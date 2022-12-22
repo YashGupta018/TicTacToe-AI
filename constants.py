@@ -2,5 +2,13 @@
 WIDTH = 600
 HEIGHT = 600
 
-# Screen Color
-# BG_COLOR = { 28, 170, 156 }
+# Colors
+BG_COLOR = (28, 170, 156)
+LINE_COLOR = (23, 145, 135)
+
+# Tic Tac Toe Board
+ROWS = 3
+COLS = 3
+
+SQSIZE = WIDTH // COLS
+LINE_WIDTH = 15
