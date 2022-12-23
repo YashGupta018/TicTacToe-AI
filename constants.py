@@ -1,14 +1,20 @@
-# Screen Size
-WIDTH = 600
-HEIGHT = 600
+WIDTH = 600 # Screen Size
+HEIGHT = 600 # Screen Size
+
+ROWS = 3 # Board Verticle Line
+COLS = 3 # Board Horizontal Line
+SQSIZE = WIDTH // COLS
+
+LINE_WIDTH = 15 # Line Size
+CIRC_WIDTH = 15 # Circle Size (Player 2)
+CROSS_WIDTH = 20 # Draw Desc Line (Player 1)
+
+RADIUS = SQSIZE // 4 # Circle Size (Player 2)
+
+OFFSET = 50
 
 # Colors
 BG_COLOR = (28, 170, 156)
 LINE_COLOR = (23, 145, 135)
-
-# Tic Tac Toe Board
-ROWS = 3
-COLS = 3
-
-SQSIZE = WIDTH // COLS
-LINE_WIDTH = 15
+CIRC_COLOR = (239, 231, 200)
+CROSS_COLOR = (66, 66, 66)

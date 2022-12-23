@@ -27,7 +27,7 @@ class Game:
 
     def __init__(self):
         self.board = Board()
-        self.player = 1
+        self.player = 1 # Player 1 = X & Player 2 = ◯
         self.show_lines()
 
     def show_lines(self):
@@ -39,6 +39,24 @@ class Game:
         # Horizontal Lines
         pygame.draw.line(screen, LINE_COLOR, (0, SQSIZE), (WIDTH, SQSIZE), LINE_WIDTH)
         pygame.draw.line(screen, LINE_COLOR, (0, HEIGHT - SQSIZE), (WIDTH, HEIGHT - SQSIZE), LINE_WIDTH)
+
+    def draw_fig(self, row, col):
+        if self.player == 1: # Draw X
+
+            # Desc. Line
+            start_desc = (col * SQSIZE + OFFSET, row * SQSIZE + OFFSET)
+            end_desc = (col * SQSIZE + SQSIZE - OFFSET, row * SQSIZE + SQSIZE - OFFSET)
+            pygame.draw.line(screen, CROSS_COLOR, start_desc, end_desc, CROSS_WIDTH)
+
+            # Asce. Line
+            start_asce = (col * SQSIZE + OFFSET, row * SQSIZE + SQSIZE - OFFSET)
+            end_asce = (col * SQSIZE + SQSIZE - OFFSET, row * SQSIZE + OFFSET)
+            pygame.draw.line(screen, CROSS_COLOR, start_asce, end_asce, CROSS_WIDTH)
+
+
+        elif self.player == 2: # Draw ◯
+            center = (col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2)
+            pygame.draw.circle(screen, CIRC_COLOR, center, RADIUS, CIRC_WIDTH)
 
     def change_player(self):
         self.player = self.player % 2 + 1
@@ -65,6 +83,7 @@ def main():
 
                 if board.empty_sqr(row, col):  
                     board.mark_sqr(row, col, game.player)
+                    game.draw_fig(row, col)
                     game.change_player()
 
         
