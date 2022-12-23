@@ -16,12 +16,18 @@ screen.fill( BG_COLOR )
 class Board:
     def __init__(self):
         self.squares = np.zeros((ROWS, COLS))
-        print(self.squares)
+
+    def mark_sqr(self, row, col, palyer):
+        self.squares[row][col] = palyer
+
+    def empty_sqr(self, row, col):
+        return self.squares[row][col] == 0
 
 class Game: 
 
     def __init__(self):
         self.board = Board()
+        self.player = 1
         self.show_lines()
 
     def show_lines(self):
@@ -34,11 +40,16 @@ class Game:
         pygame.draw.line(screen, LINE_COLOR, (0, SQSIZE), (WIDTH, SQSIZE), LINE_WIDTH)
         pygame.draw.line(screen, LINE_COLOR, (0, HEIGHT - SQSIZE), (WIDTH, HEIGHT - SQSIZE), LINE_WIDTH)
 
+    def change_player(self):
+        self.player = self.player % 2 + 1
+
 def main():
 
     #Game Object
     game = Game()
+    board = game.board
 
+    # Main Loop
     while True:
         game.show_lines()
         for event in pygame.event.get():
@@ -46,6 +57,16 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pos = event.pos
+                row = pos[1] // SQSIZE
+                col = pos[0] // SQSIZE
+
+                if board.empty_sqr(row, col):  
+                    board.mark_sqr(row, col, game.player)
+                    game.change_player()
+
         
         pygame.display.update()
 
