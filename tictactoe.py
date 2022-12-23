@@ -1,5 +1,6 @@
 import sys
 import pygame
+import numpy as np
 
 from constants import *
 
@@ -12,9 +13,15 @@ screen.fill( BG_COLOR )
 
 # Tic Tac Toe Board
 
+class Board:
+    def __init__(self):
+        self.squares = np.zeros((ROWS, COLS))
+        print(self.squares)
+
 class Game: 
 
     def __init__(self):
+        self.board = Board()
         self.show_lines()
 
     def show_lines(self):
